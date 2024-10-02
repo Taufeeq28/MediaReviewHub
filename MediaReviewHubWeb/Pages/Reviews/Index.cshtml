@@ -1,54 +1,41 @@
 ﻿@page
 @model MediaReviewHubWeb.Pages.Reviews.IndexModel
 
-<style>
-    .action-links a {
-        margin-right: 10px; /* Add space between the links */
-        text-decoration: none;
-        color: #007bff; /* Link color */
-    }
-
-        .action-links a:hover {
-            text-decoration: underline; /* Underline on hover */
-        }
-
-    .action-links {
-        white-space: nowrap; /* Prevent wrapping of the links */
-    }
-</style>
-
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
             <h2 class="text-primary">Review List</h2>
         </div>
-        <div class="col-6">
+        <div class="col-6 d-flex justify-content-end ">
+            <a asp-page="createreview" class="btn btn-primary">
+                Add New Review
+            </a>
         </div>
     </div>
     <br /><br />
     <table class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Rating</th>
-                <th>Review</th>
-                <th>Date Reviewed</th>
-                <th>Actions</th>
+                <th style="width: 10%;">Title</th>
+                <th style="width: 10%;">Category</th>
+                <th style="width: 5%;">Rating</th>
+                <th style="width: 40%;">Review</th>
+                <th style="width: 25%;">Date Reviewed</th>
+                <th style="width: 10%;">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var obj in Model.Reviews)
             {
                 <tr>
-                    <td width="10%">@obj.Title</td>
-                    <td width="10%">@obj.Category</td>
-                    <td width="5%">@obj.Rating</td>
-                    <td width="40%">@obj.ReviewText</td>
-                    <td width="30%">@obj.DateReviewed</td>
-                    <td class="action-links" width="10%">
-                        <a asp-page="/Edit" asp-route-id="@obj.ReviewID">Edit</a>|
-                        <a asp-page="/Delete" asp-route-id="@obj.ReviewID">Delete</a>
+                    <td>@obj.Title</td>
+                    <td>@obj.Category</td>
+                    <td>@obj.Rating</td>
+                    <td>@obj.ReviewText</td>
+                    <td>@obj.DateReviewed.ToString("MM/dd/yyyy")</td>
+                    <td style="white-space: nowrap; text-align: center;">
+                        <a asp-page="/Edit" asp-route-id="@obj.ReviewID" class="btn btn-primary btn-sm" style="margin-right: 5px;">Edit</a>
+                        <a asp-page="/Delete" asp-route-id="@obj.ReviewID" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             }
