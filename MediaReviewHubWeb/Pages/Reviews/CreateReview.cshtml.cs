@@ -29,10 +29,12 @@ namespace MediaReviewHubWeb.Pages.Reviews
             {
                 Review.DateReviewed = DateTime.SpecifyKind(Review.DateReviewed, DateTimeKind.Utc);
             }
-
-            await _db.Reviews.AddAsync(Review);
-            await _db.SaveChangesAsync();
-            return RedirectToPage("Index");
+            if (ModelState.IsValid) {
+                await _db.Reviews.AddAsync(Review);
+                await _db.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
+            return Page();
         }
     }
 }

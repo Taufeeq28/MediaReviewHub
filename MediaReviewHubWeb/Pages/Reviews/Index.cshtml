@@ -8,7 +8,7 @@
         </div>
         <div class="col-6 d-flex justify-content-end ">
             <a asp-page="createreview" class="btn btn-primary">
-                Add New Review
+                <i class="bi bi-plus-square"></i> &nbsp;Add New Review
             </a>
         </div>
     </div>
@@ -34,8 +34,8 @@
                     <td>@obj.ReviewText</td>
                     <td>@obj.DateReviewed.ToString("MM/dd/yyyy")</td>
                     <td style="white-space: nowrap; text-align: center;">
-                        <a asp-page="/Edit" asp-route-id="@obj.ReviewID" class="btn btn-primary btn-sm" style="margin-right: 5px;">Edit</a>
-                        <a asp-page="/Delete" asp-route-id="@obj.ReviewID" class="btn btn-danger btn-sm">Delete</a>
+                        <a asp-page="Edit" asp-route-id="@obj.ReviewID" class="btn btn-primary btn-sm" style="margin-right: 5px;"><i class="bi bi-pencil-square"></i> Edit</a>
+                        <a asp-page="Delete" asp-route-id="@obj.ReviewID" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"> </i>Delete</a>
                     </td>
                 </tr>
             }
