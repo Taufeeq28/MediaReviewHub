@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MediaReviewHubWeb.Models
+namespace MediaReviewHub.Models
 {
     public class Review
     {

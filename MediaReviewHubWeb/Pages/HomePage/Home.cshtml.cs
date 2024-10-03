@@ -1,12 +1,13 @@
-using MediaReviewHubWeb.Data;
-using MediaReviewHubWeb.Models;
+
+using MediaReviewHub.Models;
+using MediaReviewHubWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediaReviewHubWeb.Pages.Reviews
+namespace MediaReviewHubWeb.Pages.HomePage
 {
     public class HomeModel : PageModel
     {

@@ -1,5 +1,6 @@
-using MediaReviewHubWeb.Data;
-using MediaReviewHubWeb.Models;
+
+using MediaReviewHub.Models;
+using MediaReviewHubWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;

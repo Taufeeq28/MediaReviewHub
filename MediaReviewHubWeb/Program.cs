@@ -1,4 +1,5 @@
-using MediaReviewHubWeb.Data;
+using MediaReviewHub.Models;
+using MediaReviewHubWeb.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

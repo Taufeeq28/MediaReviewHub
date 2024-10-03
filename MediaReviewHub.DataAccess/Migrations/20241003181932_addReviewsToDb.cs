@@ -4,10 +4,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MediaReviewHubWeb.Migrations
+namespace MediaReviewHub.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class AddReviewToDb : Migration
+    public partial class addReviewsToDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
