@@ -7,33 +7,68 @@
             <h2 class="text-primary" style="text-align: center;">Add Review</h2>
             <hr />
         </div>
+
+        <!-- Title -->
         <div class="form-group mb-3">
             <label style="font-weight: bold;">Title:</label>
             <input type="text" asp-for="@Model.Review.Title" class="form-control" style="width: 100%; padding: 10px; font-size: 16px;" />
             <span asp-validation-for="@Model.Review.Title" class="text-danger"></span>
         </div>
+
+        <!-- Category -->
         <div class="form-group mb-3">
             <label style="font-weight: bold;">Category:</label>
-            <input type="text" asp-for="@Model.Review.Category" class="form-control" style="width: 100%; padding: 10px; font-size: 16px;" />
+            <select asp-for="@Model.Review.Category" class="form-control" style="width: 100%; padding: 10px; font-size: 16px;">
+                <option value="">Select Category</option>
+                <option value="Movies">Movies</option>
+                <option value="Books">Books</option>
+                <option value="Music">Music</option>
+                <option value="Games">Games</option>
+            </select>
             <span asp-validation-for="@Model.Review.Category" class="text-danger"></span>
         </div>
+
+        <!-- Review -->
         <div class="form-group mb-3">
             <label style="font-weight: bold;">Review:</label>
             <textarea asp-for="@Model.Review.ReviewText" class="form-control" style="width: 100%; padding: 10px; font-size: 16px; height: 120px;"></textarea>
             <span asp-validation-for="@Model.Review.ReviewText" class="text-danger"></span>
         </div>
+
+        <!-- Rating -->
         <div class="form-group mb-3">
-            <label style="font-weight: bold;">Rating:</label>
-            <input type="number" asp-for="@Model.Review.Rating" class="form-control" style="width: 100%; padding: 10px; font-size: 16px;" />
+            <label style="font-weight: bold;">Rating (1-5):</label>
+            <input type="number" asp-for="@Model.Review.Rating" class="form-control" style="width: 100%; padding: 10px; font-size: 16px;" min="1" max="5" />
             <span asp-validation-for="@Model.Review.Rating" class="text-danger"></span>
         </div>
+
+        <!-- Date Reviewed -->
         <div class="form-group mb-3">
             <label style="font-weight: bold;">Date Reviewed:</label>
-            <input type="date" asp-for="@Model.Review.DateReviewed" class="form-control" style="width: 100%; padding: 10px; font-size: 16px;" />
+            <input type="date" asp-for="@Model.Review.DateReviewed" class="form-control" style="width: 100%; padding: 10px; font-size: 16px;" min="" />
             <span asp-validation-for="@Model.Review.DateReviewed" class="text-danger"></span>
         </div>
+
+        <!-- Submit Button -->
         <div class="text-center">
             <button type="submit" class="btn btn-primary" style="width: 150px; padding: 10px; font-size: 16px;">Create</button>
         </div>
     </div>
 </form>
+
+@section Scripts {
+    <script>
+        // Restrict Rating input to 1-5 using JavaScript
+        document.querySelector('[asp-for="Review.Rating"]').addEventListener('input', function (e) {
+            if (e.target.value > 5) {
+                e.target.value = 5;
+            } else if (e.target.value < 1) {
+                e.target.value = 1;
+            }
+        });
+
+        // Disable past dates in Date Reviewed field
+        var today = new Date().toISOString().split('T')[0]; // Get today's date in 'yyyy-mm-dd' format
+        document.querySelector('[asp-for="Review.DateReviewed"]').setAttribute('min', today);
+    </script>
+}

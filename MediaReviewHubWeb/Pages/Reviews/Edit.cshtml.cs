@@ -56,6 +56,7 @@ namespace MediaReviewHubWeb.Pages.Reviews
 
                     // Save the changes
                     await _db.SaveChangesAsync();
+                    TempData["success"] = "Category Edited successfully";
                     return RedirectToPage("Index");
                 }
             }

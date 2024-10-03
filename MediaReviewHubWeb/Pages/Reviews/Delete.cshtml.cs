@@ -37,6 +37,7 @@ namespace MediaReviewHubWeb.Pages.Reviews
             {
                 _db.Reviews.Remove(reviewFromDb);
                 await _db.SaveChangesAsync();
+                TempData["success"] = "Category deleted successfully";
                 return RedirectToPage("Index");
             }
             return Page();

@@ -32,6 +32,7 @@ namespace MediaReviewHubWeb.Pages.Reviews
             if (ModelState.IsValid) {
                 await _db.Reviews.AddAsync(Review);
                 await _db.SaveChangesAsync();
+                TempData["success"] = "Category created successfully";
                 return RedirectToPage("Index");
             }
             return Page();
