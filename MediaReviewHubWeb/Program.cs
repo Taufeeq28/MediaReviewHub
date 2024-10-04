@@ -1,3 +1,5 @@
+using MediaReviewHub.DataAccess.Repository;
+using MediaReviewHub.DataAccess.Repository.IRepository;
 using MediaReviewHub.Models;
 using MediaReviewHubWeb.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
-
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
 var app = builder.Build();
 
