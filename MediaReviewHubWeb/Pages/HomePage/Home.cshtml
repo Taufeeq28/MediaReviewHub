@@ -2,56 +2,55 @@
 @model HomeModel
 
 <div class="container-fluid p-0">
-    <!-- Hero Section -->
-    <div class="hero-section text-center text-light" style="background: url('/path/to/your/hero-image.jpg') no-repeat center center/cover; height: 100vh; position: relative;">
-        <div class="hero-overlay" style="background: black; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-            <div class="hero-content d-flex flex-column justify-content-center align-items-center" style="height: 100%; z-index: 2;">
-                <h1 style="font-size: 4rem; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Welcome to Media Review Hub</h1>
-                <p style="font-size: 1.5rem; color: white; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);">Explore and share your thoughts on your favorite movies, books, music, and games!</p>
-                <a href="/Reviews" class="btn btn-primary btn-lg mt-3" style="padding: 10px 30px; font-size: 1.2rem; background-color: #007bff; border: none;">Explore Reviews</a>
-            </div>
+    <!-- Hero Section with Black Background -->
+    <div class="hero-section text-center text-light" style="background: black; height: 100vh; position: relative;">
+        <div class="hero-content d-flex flex-column justify-content-center align-items-center" style="height: 100%; z-index: 2;">
+            <h1 style="font-size: 4.5rem; color: white; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); font-weight: bold;">Welcome to Media Review Hub</h1>
+            <p style="font-size: 1.6rem; color: white; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); max-width: 800px;">Explore and share your thoughts on movies, books, music, and games! Get recommendations, contribute reviews, and connect with like-minded people.</p>
+            <a href="/Reviews" class="btn btn-lg mt-4" style="padding: 12px 35px; font-size: 1.3rem; background-color: #ff7f50; border: none; color: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">Explore Reviews</a>
         </div>
     </div>
+</div>
 
-    <!-- Introduction Section -->
-    <div class="container py-5 text-center">
-        <h2 style="color: #007bff;">Discover a World of Media Reviews</h2>
-        <p style="font-size: 1.2rem; color: #333;">We offer honest reviews and opinions on all forms of media including books, movies, music, and games. Whether you're looking for recommendations or want to contribute your own review, you're in the right place!</p>
-        <a asp-page="/Reviews/CreateReview" class="btn btn-outline-primary btn-lg mt-3" style="padding: 10px 30px; font-size: 1.2rem; border-color: #007bff; color: #007bff;">Share Your Review</a>
-    </div>
+<!-- Introduction Section -->
+<div class="container py-5 text-center">
+    <h2 style="color: #007bff; font-weight: bold;">Discover a World of Media Reviews</h2>
+    <p style="font-size: 1.3rem; color: #555; max-width: 900px; margin: 0 auto;">At Media Review Hub, we believe in the power of authentic reviews to help you make informed decisions about what to watch, read, play, or listen to next. Our platform is designed to provide a diverse range of opinions from fellow enthusiasts just like you. Whether you're a film buff, a bookworm, a gamer, or a music lover, you'll find reviews to guide your next choice.</p>
+    <p style="font-size: 1.3rem; color: #555; max-width: 900px; margin: 20px auto 0;">Join our community of reviewers, share your thoughts on your favorite media, and discover hidden gems that align with your interests. Don’t just consume—be part of the conversation!</p>
+    <a asp-page="/Reviews/CreateReview" class="btn btn-outline-primary btn-lg mt-4" style="padding: 12px 35px; font-size: 1.3rem; border-color: #007bff; color: #007bff;">Share Your Review</a>
+</div>
 
-    <!-- Featured Reviews Section -->
-    <div class="container py-5">
-        <h3 class="text-center" style="color: #007bff;">Featured Reviews</h3>
-        <div class="row">
-            @foreach (var review in Model.FeaturedReviews)
-            {
-                <div class="col-md-4">
-                    <div class="card" style="margin-top: 20px; border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color: #333;">@review.Title</h5>
-                            <p class="card-category" style="color: #555;"><strong>Category:</strong> @review.Category</p>
-                            <p class="card-text" style="color: #666;">@review.ReviewText</p>
-                            <p class="card-rating">
-                                <strong>Rating:</strong>
-                                <span style="color: gold;">
-                                    @for (int i = 1; i <= 5; i++)
+<!-- Featured Reviews Section -->
+<div class="container py-5">
+    <h3 class="text-center" style="color: #007bff; font-weight: bold;">Featured Reviews</h3>
+    <div class="row">
+        @foreach (var review in Model.FeaturedReviews)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card" style="border: none; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #2c3e50; font-weight: bold;">@review.Title</h5>
+                        <p class="card-category" style="color: #555;"><strong>Category:</strong> @review.Category</p>
+                        <p class="card-text" style="color: #666; min-height: 60px;">@review.ReviewText</p>
+                        <p class="card-rating" style="font-size: 1.2rem;">
+                            <strong>Rating:</strong>
+                            <span style="color: gold;">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= @review.Rating)
                                     {
-                                        if (i <= @review.Rating)
-                                        {
-                                            <span>★</span> <!-- Filled star -->
-                                        }
-                                        else
-                                        {
-                                            <span>☆</span> <!-- Empty star -->
-                                        }
+                                        <span>★</span> <!-- Filled star -->
                                     }
-                                </span>
-                            </p>
-                        </div>
+                                    else
+                                    {
+                                        <span>☆</span> <!-- Empty star -->
+                                    }
+                                }
+                            </span>
+                        </p>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
