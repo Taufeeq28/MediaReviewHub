@@ -1,20 +1,25 @@
 ﻿@page
 @model HomeModel
-
 <div class="container-fluid p-0">
-    <!-- Hero Section with Black Background -->
-    <div class="hero-section text-center text-light" style="background: black; height: 100vh; position: relative;">
-        <div class="hero-content d-flex flex-column justify-content-center align-items-center" style="height: 100%; z-index: 2;">
-            <h1 style="font-size: 4.5rem; color: white; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); font-weight: bold;">Welcome to Media Review Hub</h1>
-            <p style="font-size: 1.6rem; color: white; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); max-width: 800px;">Explore and share your thoughts on movies, books, music, and games! Get recommendations, contribute reviews, and connect with like-minded people.</p>
+    <!-- Hero Section with Image Background and Dark Overlay -->
+    <div class="hero-section text-center text-light d-flex justify-content-center align-items-center" style="background: url('/images/hero-background.jpg') no-repeat center center/cover; height: 100vh; position: relative;">
+        <!-- Dark overlay -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
+
+        <!-- Content with z-index to make it appear above the overlay -->
+        <div class="hero-content d-flex flex-column justify-content-center align-items-center" style="z-index: 2;">
+            <h1 style="font-size: 4.5rem; color: #ffffff; text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9); font-weight: bold;">Welcome to Media Review Hub</h1>
+            <p style="font-size: 1.8rem; color: #f1f1f1; text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9); max-width: 900px;">Explore and share your thoughts on movies, books, music, and games! Get recommendations, contribute reviews, and connect with like-minded people.</p>
             <a href="/Reviews" class="btn btn-lg mt-4" style="padding: 12px 35px; font-size: 1.3rem; background-color: #ff7f50; border: none; color: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">Explore Reviews</a>
         </div>
     </div>
 </div>
 
+
+
 <!-- Introduction Section -->
 <div class="container py-5 text-center">
-    <h2 style="color: #007bff; font-weight: bold;">Discover a World of Media Reviews</h2>
+    <h2 style="color: #2c3e50; font-weight: bold;">Discover a World of Media Reviews</h2>
     <p style="font-size: 1.3rem; color: #555; max-width: 900px; margin: 0 auto;">At Media Review Hub, we believe in the power of authentic reviews to help you make informed decisions about what to watch, read, play, or listen to next. Our platform is designed to provide a diverse range of opinions from fellow enthusiasts just like you. Whether you're a film buff, a bookworm, a gamer, or a music lover, you'll find reviews to guide your next choice.</p>
     <p style="font-size: 1.3rem; color: #555; max-width: 900px; margin: 20px auto 0;">Join our community of reviewers, share your thoughts on your favorite media, and discover hidden gems that align with your interests. Don’t just consume—be part of the conversation!</p>
     <a asp-page="/Reviews/CreateReview" class="btn btn-outline-primary btn-lg mt-4" style="padding: 12px 35px; font-size: 1.3rem; border-color: #007bff; color: #007bff;">Share Your Review</a>

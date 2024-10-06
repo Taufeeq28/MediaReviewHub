@@ -1,27 +1,27 @@
-
+using MediaReviewHub.DataAccess.Repository.IRepository;
 using MediaReviewHub.Models;
-using MediaReviewHubWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace MediaReviewHubWeb.Pages.Reviews
 {
     [BindProperties]
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
 
         public Review Review { get; set; }
 
-        public EditModel(ApplicationDbContext db)
+        public EditModel(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         // Load the Review on GET request
         public async Task<IActionResult> OnGet(int id)
         {
-            Review = await _db.Reviews.FindAsync(id);
+            Review = _unitOfWork.Review.GetFirstOrDefault(r => r.ReviewID == id);
 
             if (Review == null)
             {
@@ -30,21 +30,25 @@ namespace MediaReviewHubWeb.Pages.Reviews
 
             return Page();
         }
-            public async Task<IActionResult> OnPost()
+
+        public async Task<IActionResult> OnPost()
+        {
+            // Validation logic: Title should not be the same as the Rating
+            if (Review.Title == Review.Rating.ToString())
             {
-                if (Review.Title == Review.Rating.ToString())
-                {
-                    ModelState.AddModelError("Review.Title", "The Title cannot exactly match the Rating.");
-                }
+                ModelState.AddModelError("Review.Title", "The Title cannot exactly match the Rating.");
+            }
+
+            // Convert DateReviewed to UTC if unspecified
             if (Review.DateReviewed.Kind == DateTimeKind.Unspecified)
             {
                 Review.DateReviewed = DateTime.SpecifyKind(Review.DateReviewed, DateTimeKind.Utc);
             }
 
-
+            // If the model is valid, proceed with the update
             if (ModelState.IsValid)
             {
-                var reviewFromDb = await _db.Reviews.FindAsync(Review.ReviewID);
+                var reviewFromDb = _unitOfWork.Review.GetFirstOrDefault(r => r.ReviewID == Review.ReviewID);
 
                 if (reviewFromDb != null)
                 {
@@ -55,14 +59,15 @@ namespace MediaReviewHubWeb.Pages.Reviews
                     reviewFromDb.Rating = Review.Rating;
                     reviewFromDb.DateReviewed = Review.DateReviewed;
 
-                    // Save the changes
-                    await _db.SaveChangesAsync();
-                    TempData["success"] = "Category Edited successfully";
+                    // Save the changes through the Unit of Work
+                    _unitOfWork.Save();
+
+                    TempData["success"] = "Review edited successfully";
                     return RedirectToPage("Index");
                 }
             }
 
             return Page();
-            }
         }
     }
+}

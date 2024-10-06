@@ -1,27 +1,27 @@
-
+using MediaReviewHub.DataAccess.Repository.IRepository;
 using MediaReviewHub.Models;
-using MediaReviewHubWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace MediaReviewHubWeb.Pages.Reviews
 {
     [BindProperties]
     public class DeleteModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
 
         public Review Review { get; set; }
 
-        public DeleteModel(ApplicationDbContext db)
+        public DeleteModel(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         // Load the Review on GET request
         public async Task<IActionResult> OnGet(int id)
         {
-            Review = await _db.Reviews.FindAsync(id);
+            Review = _unitOfWork.Review.GetFirstOrDefault(r => r.ReviewID == id);
 
             if (Review == null)
             {
@@ -30,20 +30,21 @@ namespace MediaReviewHubWeb.Pages.Reviews
 
             return Page();
         }
+
+        // Delete the Review on POST request
         public async Task<IActionResult> OnPost(int id)
         {
-            var reviewFromDb = await _db.Reviews.FindAsync(id);
+            var reviewFromDb = _unitOfWork.Review.GetFirstOrDefault(r => r.ReviewID == id);
 
             if (reviewFromDb != null)
             {
-                _db.Reviews.Remove(reviewFromDb);
-                await _db.SaveChangesAsync();
+                _unitOfWork.Review.Remove(reviewFromDb);
+                _unitOfWork.Save();
                 TempData["success"] = "Category deleted successfully";
                 return RedirectToPage("Index");
             }
-            return Page();
 
-            
+            return Page();
         }
     }
-    }
+}

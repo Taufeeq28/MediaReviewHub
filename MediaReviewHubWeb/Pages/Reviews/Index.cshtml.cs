@@ -1,21 +1,24 @@
+using MediaReviewHub.DataAccess.Repository.IRepository;
 using MediaReviewHub.Models;
-using MediaReviewHubWeb.DataAccess.Data;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
 
 namespace MediaReviewHubWeb.Pages.Reviews
 {
     public class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
         public IEnumerable<Review> Reviews { get; set; }
-        public IndexModel(ApplicationDbContext db)
+
+        public IndexModel(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
+
         public void OnGet()
         {
-            Reviews = _db.Reviews;
+            // Fetch all reviews using the Unit of Work
+            Reviews = _unitOfWork.Review.GetAll();
         }
     }
 }

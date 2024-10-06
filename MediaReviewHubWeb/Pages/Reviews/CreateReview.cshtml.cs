@@ -1,4 +1,5 @@
 
+using MediaReviewHub.DataAccess.Repository.IRepository;
 using MediaReviewHub.Models;
 using MediaReviewHubWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,13 @@ namespace MediaReviewHubWeb.Pages.Reviews
     [BindProperties]
     public class CreateReviewModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
-
+        private readonly IUnitOfWork _unitOfWork;
         public Review Review { get; set; }
 
-        public CreateReviewModel(ApplicationDbContext db)
+        public CreateReviewModel(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
-
         public void OnGet()
         {
         }
@@ -31,8 +30,8 @@ namespace MediaReviewHubWeb.Pages.Reviews
                 Review.DateReviewed = DateTime.SpecifyKind(Review.DateReviewed, DateTimeKind.Utc);
             }
             if (ModelState.IsValid) {
-                await _db.Reviews.AddAsync(Review);
-                await _db.SaveChangesAsync();
+                _unitOfWork.Review.Add(Review);
+                _unitOfWork.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToPage("Index");
             }
