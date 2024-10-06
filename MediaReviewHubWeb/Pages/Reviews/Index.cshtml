@@ -1,82 +1,82 @@
 ﻿@page
 @model MediaReviewHubWeb.Pages.Reviews.IndexModel
 
-<div class="container p-3" style="font-family: 'Helvetica', sans-serif; color: #333;">
-    <div class="row pt-4">
+<div class="container p-2" style="font-family: 'Helvetica', sans-serif; color: #333;">
+    <div class="row pt-3">
         <div class="col-6">
-            <h2 class="text-primary" style="font-weight: bold; color: #2C3E50;">Review List</h2>
+            <h2 style="font-weight: bold; color: black;">Review List</h2>
         </div>
+
         <div class="col-6 d-flex justify-content-end">
-            <a asp-page="createreview" class="btn btn-primary" 
-               style="background: linear-gradient(45deg, #1abc9c, #16a085); border: none; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); font-size: 16px;">
+            <a asp-page="createreview" class="btn btn-primary"
+               style="background: linear-gradient(45deg, #2980B9, #2980B9); border: none; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); font-size: 16px;">
                 <i class="bi bi-plus-square"></i> &nbsp;Add New Review
             </a>
         </div>
     </div>
-    <br /><br />
+</div>
 
-    <div class="container mt-4" style="background-color: #F8F9FA; padding: 20px; border-radius: 10px;">
-        <div class="row">
-            <div class="col-12">
-                <h4 style="color: #34495E;">Select Categories</h4>
-                <div class="d-flex flex-wrap justify-content-start">
-                    <div class="form-check form-check-inline" style="margin-right: 15px;">
-                        <input class="form-check-input" type="checkbox" id="movies" value="Movies" name="categoryFilter" style="width: 20px; height: 20px;">
-                        <label class="form-check-label" for="movies" style="font-size: 16px; padding-left: 10px;">Movies</label>
-                    </div>
-                    <div class="form-check form-check-inline" style="margin-right: 15px;">
-                        <input class="form-check-input" type="checkbox" id="books" value="Books" name="categoryFilter" style="width: 20px; height: 20px;">
-                        <label class="form-check-label" for="books" style="font-size: 16px; padding-left: 10px;">Books</label>
-                    </div>
-                    <div class="form-check form-check-inline" style="margin-right: 15px;">
-                        <input class="form-check-input" type="checkbox" id="music" value="Music" name="categoryFilter" style="width: 20px; height: 20px;">
-                        <label class="form-check-label" for="music" style="font-size: 16px; padding-left: 10px;">Music</label>
-                    </div>
-                    <div class="form-check form-check-inline" style="margin-right: 15px;">
-                        <input class="form-check-input" type="checkbox" id="games" value="Games" name="categoryFilter" style="width: 20px; height: 20px;">
-                        <label class="form-check-label" for="games" style="font-size: 16px; padding-left: 10px;">Games</label>
-                    </div>
+<!-- Category Filters Section -->
+<div class="container mt-3" style="background-color: #F8F9FA; padding: 15px; border-radius: 10px;">
+    <div class="row">
+        <div class="col-12 d-flex align-items-center">
+            <h4 style="color: #34495E; margin-bottom: 0; font-size: 18px;">Select Categories</h4> <!-- Reduced font size -->
+            <div class="d-flex justify-content-start align-items-center flex-wrap ms-3">
+                <!-- Added margin-left to separate heading and checkboxes -->
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="movies" value="Movies" name="categoryFilter" style="width: 20px; height: 20px;">
+                    <label class="form-check-label" for="movies" style="font-size: 16px; padding-left: 5px;">Movies</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="books" value="Books" name="categoryFilter" style="width: 20px; height: 20px;">
+                    <label class="form-check-label" for="books" style="font-size: 16px; padding-left: 5px;">Books</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="music" value="Music" name="categoryFilter" style="width: 20px; height: 20px;">
+                    <label class="form-check-label" for="music" style="font-size: 16px; padding-left: 5px;">Music</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="games" value="Games" name="categoryFilter" style="width: 20px; height: 20px;">
+                    <label class="form-check-label" for="games" style="font-size: 16px; padding-left: 5px;">Games</label>
                 </div>
             </div>
         </div>
-
-        <br />
-
-        <table id="myTable" class="table table-bordered table-striped" style="width:100%; border: 2px solid #ddd; font-size: 16px; ">
-            <thead style="background-color: #34495E; color: white;">
-                <tr>
-                    <th style="padding: 12px; text-align: center;">Title</th>
-                    <th style="padding: 12px; text-align: center;">Category</th>
-                    <th style="padding: 12px; text-align: center;">Rating</th>
-                    <th style="padding: 12px; text-align: center;">Review</th>
-                    <th style="padding: 12px; text-align: center;">Date Reviewed</th>
-                    <th style="padding: 12px; text-align: center;">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var obj in Model.Reviews)
-                {
-                    <tr style="transition: background-color 0.3s;">
-                        <td style="padding: 10px; text-align: center;">@obj.Title</td>
-                        <td style="padding: 10px; text-align: center;">@obj.Category</td>
-                        <td style="padding: 10px; text-align: center;">@obj.Rating</td>
-                        <td style="padding: 10px; text-align: center;">@obj.ReviewText</td>
-                        <td style="padding: 10px; text-align: center;">@obj.DateReviewed.ToString("MM/dd/yyyy")</td>
-                        <td style="white-space: nowrap; text-align: center;">
-                            <a asp-page="Edit" asp-route-id="@obj.ReviewID" 
-                               class="btn btn-primary btn-sm" 
-                               style="margin-right: 5px; background-color: #2980B9; border: none; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-                                <i class="bi bi-pencil-square"></i> Edit
-                            </a>
-                            <a asp-page="Delete" asp-route-id="@obj.ReviewID" 
-                               class="btn btn-danger btn-sm" 
-                               style="background-color: #E74C3C; border: none; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-                                <i class="bi bi-trash-fill"></i> Delete
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
+
+    <table id="myTable" class="table table-bordered table-striped mt-3" style="width:100%; border: 2px solid #ddd; font-size: 16px;">
+        <thead style="background-color: #34495E; color: white;">
+            <tr>
+                <th style="padding: 8px; text-align: center;">Title</th>
+                <th style="padding: 8px; text-align: center;">Category</th>
+                <th style="padding: 8px; text-align: center;">Rating</th>
+                <th style="padding: 8px; text-align: center;">Review</th>
+                <th style="padding: 8px; text-align: center;">Date Reviewed</th>
+                <th style="padding: 8px; text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Reviews)
+            {
+                <tr style="transition: background-color 0.3s;">
+                    <td style="padding: 6px; text-align: center;">@obj.Title</td>
+                    <td style="padding: 6px; text-align: center;">@obj.Category</td>
+                    <td style="padding: 6px; text-align: center;">@obj.Rating</td>
+                    <td style="padding: 6px; text-align: center;">@obj.ReviewText</td>
+                    <td style="padding: 6px; text-align: center;">@obj.DateReviewed.ToString("MM/dd/yyyy")</td>
+                    <td style="white-space: nowrap; text-align: center;">
+                        <a asp-page="Edit" asp-route-id="@obj.ReviewID"
+                           class="btn btn-primary btn-sm"
+                           style="margin-right: 5px; background-color: #2980B9; border: none; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-page="Delete" asp-route-id="@obj.ReviewID"
+                           class="btn btn-danger btn-sm"
+                           style="background-color: #E74C3C; border: none; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

@@ -4,66 +4,64 @@
     ViewData["Title"] = "Home page";
 }
 <div class="container-fluid p-0">
-    <!-- Hero Section -->
-    <div class="hero-section text-center text-light" style="background: url('/path/to/your/hero-image.jpg') no-repeat center center/cover; height: 100vh; position: relative;">
-        <div class="hero-overlay" style="background: rgba(0, 0, 0, 0.6); position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-            <div class="hero-content d-flex flex-column justify-content-center align-items-center" style="height: 100%; z-index: 2;">
-                <h1 style="font-size: 4rem; color: white;">Welcome to Media Review Hub</h1>
-                <p style="font-size: 1.5rem; color: white;">Explore and share your thoughts on your favorite movies, books, music, and games!</p>
-                <a href="/Reviews" class="btn btn-primary btn-lg mt-3" style="padding: 10px 30px; font-size: 1.2rem;">Explore Reviews</a>
-            </div>
+    <!-- Hero Section with Image Background and Dark Overlay -->
+    <div class="hero-section text-center text-light d-flex justify-content-center align-items-center" style="background: url('/images/hero-background.jpg') no-repeat center center/cover; height: 100vh; position: relative;">
+        <!-- Dark overlay -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
+
+        <!-- Content with z-index to make it appear above the overlay -->
+        <div class="hero-content d-flex flex-column justify-content-center align-items-center" style="z-index: 2;">
+            <h1 style="font-size: 4.5rem; color: #ffffff; text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9); font-weight: bold;">Welcome to Media Review Hub</h1>
+            <p style="font-size: 1.8rem; color: #f1f1f1; text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9); max-width: 900px;">Explore and share your thoughts on movies, books, music, and games! Get recommendations, contribute reviews, and connect with like-minded people.</p>
+            <a href="/Reviews" class="btn btn-lg mt-4" style="padding: 12px 35px; font-size: 1.3rem; background-color: #007bff; border: none; color: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">Explore Reviews</a>
         </div>
     </div>
+</div>
 
-    <!-- Introduction Section -->
-    <div class="container py-5 text-center">
-        <h2 style="color: #007bff;">Discover a World of Media Reviews</h2>
-        <p style="font-size: 1.2rem;">We offer honest reviews and opinions on all forms of media including books, movies, music, and games. Whether you're looking for recommendations or want to contribute your own review, you're in the right place!</p>
-        <a href="/Reviews/Create" class="btn btn-outline-primary btn-lg mt-3" style="padding: 10px 30px; font-size: 1.2rem;">Share Your Review</a>
+
+
+<!-- Introduction Section -->
+<!-- Introduction Section -->
+<div class="container py-5 text-center" id="about-us">
+    <h2 style="color: #2c3e50; font-weight: bold;">Discover a World of Media Reviews</h2>
+    <p style="font-size: 1.3rem; color: #555; max-width: 900px; margin: 0 auto;">At Media Review Hub, we believe in the power of authentic reviews to help you make informed decisions about what to watch, read, play, or listen to next. Our platform is designed to provide a diverse range of opinions from fellow enthusiasts just like you. Whether you're a film buff, a bookworm, a gamer, or a music lover, you'll find reviews to guide your next choice.</p>
+    <p style="font-size: 1.3rem; color: #555; max-width: 900px; margin: 20px auto 0;">Join our community of reviewers, share your thoughts on your favorite media, and discover hidden gems that align with your interests. Don’t just consume—be part of the conversation!</p>
+    <a href="/Reviews/CreateReview" class="btn btn-lg mt-4" style="padding: 12px 35px; font-size: 1.3rem; background-color: #007bff; border: none; color: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">Share your Review</a>
+
+<!-- Inline CSS for Hover and Active -->
+
+
+<!-- Featured Reviews Section -->
+<div class="container py-5">
+        <h3 class="text-center py-5" style="color: #2c3e50; font-weight: bold;">Featured Reviews</h3>
+    <div class="row">
+        @foreach (var review in Model.FeaturedReviews)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card" style="border: none; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #2c3e50; font-weight: bold;">@review.Title</h5>
+                        <p class="card-category" style="color: #555;"><strong>Category:</strong> @review.Category</p>
+                        <p class="card-text" style="color: #666; min-height: 60px;">@review.ReviewText</p>
+                        <p class="card-rating" style="font-size: 1.2rem;">
+                            <strong>Rating:</strong>
+                            <span style="color: gold;">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= @review.Rating)
+                                    {
+                                        <span>★</span> <!-- Filled star -->
+                                    }
+                                    else
+                                    {
+                                        <span>☆</span> <!-- Empty star -->
+                                    }
+                                }
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-
-    <!-- Featured Reviews Section -->
-    <div class="container py-5">
-        <h3 class="text-center" style="color: #007bff;">Featured Reviews</h3>
-        <div class="row">
-            <!-- Review 1 -->
-            <div class="col-md-4">
-                <div class="card" style="margin-top: 20px;">
-                    <img src="/path/to/movie-image1.jpg" class="card-img-top" alt="Movie Cover" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Inception</h5>
-                        <p class="card-text">A mind-bending thriller with stunning visuals.</p>
-                        <a href="/Reviews/Details?reviewId=1" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Review 2 -->
-            <div class="col-md-4">
-                <div class="card" style="margin-top: 20px;">
-                    <img src="/path/to/book-image2.jpg" class="card-img-top" alt="Book Cover" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Rich Dad Poor Dad</h5>
-                        <p class="card-text">An inspiring look at personal finance and success.</p>
-                        <a href="/Reviews/Details?reviewId=2" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Review 3 -->
-            <div class="col-md-4">
-                <div class="card" style="margin-top: 20px;">
-                    <img src="/path/to/game-image3.jpg" class="card-img-top" alt="Game Cover" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">God of War</h5>
-                        <p class="card-text">An epic adventure game with stunning combat and story.</p>
-                        <a href="/Reviews/Details?reviewId=3" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer Section -->
-    
 </div>

@@ -1,10 +1,9 @@
 ﻿@page
 @model MediaReviewHubWeb.Pages.Reviews.CreateReviewModel
-
 <form method="post">
     <div class="border p-4 mt-4" style="max-width: 600px; margin: 0 auto; background-color: #f8f9fa; border-radius: 8px;">
-        <div class="pb-3">
-            <h2 class="text-primary" style="text-align: center;">Add Review</h2>
+        <div class="pb-3 text-center">
+            <h2 style="color: black;">Add Review</h2>
             <hr />
         </div>
 
@@ -49,8 +48,11 @@
             <span asp-validation-for="@Model.Review.DateReviewed" class="text-danger"></span>
         </div>
 
-        <!-- Submit Button -->
-        <div class="text-center">
+        <!-- Submit and Back Buttons -->
+        <div class="text-center d-flex justify-content-between">
+            <!-- Back Button -->
+            <a href="/Reviews" class="btn btn-secondary" style="width: 150px; padding: 10px; font-size: 16px;">Back</a>
+            <!-- Create Button -->
             <button type="submit" class="btn btn-primary" style="width: 150px; padding: 10px; font-size: 16px;">Create</button>
         </div>
     </div>

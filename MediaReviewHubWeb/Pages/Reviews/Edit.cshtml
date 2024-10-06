@@ -4,44 +4,60 @@
 <form method="post">
     <div class="border p-4 mt-4 bg-light" style="max-width: 700px; margin: 0 auto; border-radius: 8px;">
         <div class="pb-3 text-center">
-            <h2 class="text-primary">Edit Review</h2>
+            <h2 style="color: black;">Edit Review</h2>
             <hr />
         </div>
 
+        <!-- Hidden Review ID -->
         <input hidden asp-for="Review.ReviewID" />
 
-        <div class="form-group mb-3">
-            <label asp-for="Review.Title" class="fw-bold"></label>
-            <input asp-for="Review.Title" class="form-control" />
+        <!-- Title -->
+        <div class="form-group mb-4">
+            <label asp-for="Review.Title" class="fw-bold">Title</label>
+            <input asp-for="Review.Title" class="form-control form-control-lg" placeholder="Enter review title" />
             <span asp-validation-for="Review.Title" class="text-danger"></span>
         </div>
 
-        <div class="form-group mb-3">
-            <label asp-for="Review.Category" class="fw-bold"></label>
-            <input asp-for="Review.Category" class="form-control" />
+        <!-- Category (Dropdown) -->
+        <div class="form-group mb-4">
+            <label asp-for="Review.Category" class="fw-bold">Category</label>
+            <select asp-for="Review.Category" class="form-control form-control-lg">
+                <option value="">Select Category</option>
+                <option value="Movies">Movies</option>
+                <option value="Books">Books</option>
+                <option value="Music">Music</option>
+                <option value="Games">Games</option>
+            </select>
             <span asp-validation-for="Review.Category" class="text-danger"></span>
         </div>
 
-        <div class="form-group mb-3">
-            <label asp-for="Review.ReviewText" class="fw-bold"></label>
-            <textarea asp-for="Review.ReviewText" class="form-control" style="height: 120px;"></textarea>
+        <!-- Review Text -->
+        <div class="form-group mb-4">
+            <label asp-for="Review.ReviewText" class="fw-bold">Review Text</label>
+            <textarea asp-for="Review.ReviewText" class="form-control form-control-lg" style="height: 120px;" placeholder="Write your review here"></textarea>
             <span asp-validation-for="Review.ReviewText" class="text-danger"></span>
         </div>
 
-        <div class="form-group mb-3">
-            <label asp-for="Review.Rating" class="fw-bold"></label>
-            <input asp-for="Review.Rating" type="number" class="form-control" />
+        <!-- Rating -->
+        <div class="form-group mb-4">
+            <label asp-for="Review.Rating" class="fw-bold">Rating (1-5)</label>
+            <input asp-for="Review.Rating" type="number" class="form-control form-control-lg" min="1" max="5" />
             <span asp-validation-for="Review.Rating" class="text-danger"></span>
         </div>
 
-        <div class="form-group mb-3">
-            <label asp-for="Review.DateReviewed" class="fw-bold"></label>
-            <input asp-for="Review.DateReviewed" type="date" class="form-control" />
+        <!-- Date Reviewed -->
+        <div class="form-group mb-4">
+            <label asp-for="Review.DateReviewed" class="fw-bold">Date Reviewed</label>
+            <input asp-for="Review.DateReviewed" type="date" class="form-control form-control-lg" />
             <span asp-validation-for="Review.DateReviewed" class="text-danger"></span>
         </div>
 
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary" style="width: 150px;">Update</button>
+        <!-- Submit and Back Buttons -->
+        <div class="text-center d-flex justify-content-between mt-4">
+            <!-- Back Button -->
+            <a href="/Reviews" class="btn btn-outline-secondary btn-lg" style="width: 150px;">Back</a>
+            <!-- Update Button (now green) -->
+            <button type="submit" class="btn btn-success btn-lg" style="width: 150px;">Update</button> <!-- Using btn-success for green button -->
         </div>
     </div>
 </form>
