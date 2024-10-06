@@ -16,7 +16,7 @@ Media Review Hub is a simple web application designed to allow users to review a
 ## Project Structure
 
 The solution is organized into the following projects:
-
+ ```
 MediaReviewHub/
 │
 ├── MediaReviewHub.DataAccess/
@@ -54,6 +54,7 @@ MediaReviewHub/
     │   └── Index.cshtml
     ├── appsettings.json
     └── Program.cs
+ ```
 
 ### Key Files and Their Purpose:
 - **ApplicationDbContext.cs**: Handles the connection to the PostgreSQL database and defines the `DbSet<Review>` to interact with the `Reviews` table.
