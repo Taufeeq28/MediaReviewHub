@@ -8,8 +8,8 @@ Media Review Hub is a simple web application designed to allow users to review a
 3. [Application Features](#application-features)
 4. [Setup and Installation](#setup-and-installation)
 5. [Database Schema](#database-schema)
-6. [Assumptions and Design Decisions](#assumptions-and-design-decisions)
-7. [Personal Reviews](#personal-reviews)
+6. [Dependencies](#dependencies)
+7. [Assumptions and Design Decisions](#assumptions-and-design-decisions)
 
 ---
 
@@ -152,6 +152,25 @@ The project utilizes the following technologies:
 - `DateReviewed` (date) - The date the media was reviewed.
 
 ---
+
+## Dependencies
+
+The project relies on several NuGet packages to handle core functionalities like database access, ORM, and PostgreSQL support. Here's a detailed list of the dependencies and their purposes:
+
+1. **Microsoft.EntityFrameworkCore (Version 8.0.8)**
+   - A modern object-database mapper (ORM) for .NET applications that supports a variety of databases. This package allows the project to manage database interactions using C# classes and LINQ queries.
+
+2. **Microsoft.EntityFrameworkCore.Tools (Version 8.0.8)**
+   - This package provides design-time tools for Entity Framework Core. It allows the developer to create and apply migrations, scaffold databases, and perform other operations that facilitate development.
+
+3. **Npgsql.EntityFrameworkCore.PostgreSQL (Version 8.0.8)
+  - Adds support for PostgreSQL databases in Entity Framework Core, enabling the project to interact with PostgreSQL databases using Entity Framework Core's fluent API and LINQ.
+
+
+The MediaReviewHubWeb project references two internal projects:
+MediaReviewHub.DataAccess: Handles all database interactions and repository management.
+MediaReviewHub.Models: Contains the models used in the application (e.g., Review).
+
 
 ## Assumptions and Design Decisions
 
