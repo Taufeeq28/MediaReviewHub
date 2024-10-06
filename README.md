@@ -89,6 +89,13 @@ The project utilizes the following technologies:
 
 3. **Add Review**:
    - Form to create a new review with fields for title, category, review text, rating, and date.
+   - Autocomplete Feature: When entering a title, the input field fetches and suggests results from both the TVMaze API for movies and the Open Library API for books. The suggestions are displayed in a dropdown with the title and category (e.g., "Movie" or "Book").
+
+   Implementation details:
+   
+   When a user types more than 2 characters in the title field, a request is sent to both the TVMaze API and Open Library API.
+   The results are combined and displayed in a dropdown list, showing both the title and category.
+   Selecting a suggestion from the dropdown will automatically fill the title input field.
    
 4. **Edit Review**:
    - Allows users to update existing reviews.
