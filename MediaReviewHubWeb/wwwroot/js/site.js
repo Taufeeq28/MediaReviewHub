@@ -10,7 +10,7 @@
     function fetchMovies(query) {
         return fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
             .then(response => response.json())
-            .then(data => data.map(movie => ({ name: movie.show.name, category: 'Movie' })))
+            .then(data => data.map(movie => ({ name: movie.show.name, category: 'Movies' }))) // Changed to 'Movies'
             .catch(error => console.error('Error fetching movie data:', error));
     }
 
@@ -18,7 +18,7 @@
     function fetchBooks(query) {
         return fetch(`https://openlibrary.org/search.json?title=${query}`)
             .then(response => response.json())
-            .then(data => data.docs.slice(0, 6).map(book => ({ name: book.title, category: 'Book' })))
+            .then(data => data.docs.slice(0, 6).map(book => ({ name: book.title, category: 'Books' }))) // Changed to 'Books'
             .catch(error => console.error('Error fetching book data:', error));
     }
 
@@ -57,8 +57,17 @@
 
     // Handle suggestion click event
     $('#movieSuggestions').on('click', 'li', function () {
-        $('#titleInput').val($(this).children('span:first-child').text());
-        $('#movieSuggestions').empty().hide(); // Hide the suggestions after selecting one
+        var selectedTitle = $(this).children('span:first-child').text();
+        var selectedCategory = $(this).children('span:last-child').text().replace(/[()]/g, '');
+
+        // Set the selected title in the input field
+        $('#titleInput').val(selectedTitle);
+
+        // Automatically select the category based on the selected suggestion
+        $('#categorySelect').val(selectedCategory); // This will now work since categories match
+
+        // Hide the suggestions list
+        $('#movieSuggestions').empty().hide();
     });
 
     // Hide the suggestions if clicked outside the input or suggestions list
