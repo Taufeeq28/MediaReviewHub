@@ -16,114 +16,79 @@ namespace MediaReviewHubWeb.DataAccess.Data
 
             // Seed data with DateTime set to UTC
             modelBuilder.Entity<Review>().HasData(
-                new Review
-                {
-                    ReviewID = 1,
-                    Title = "Inception",
-                    Category = "Movies",
-                    ReviewText = "A mind-bending thriller with stunning visuals.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 9, 30), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 2,
-                    Title = "The Great Gatsby",
-                    Category = "Books",
-                    ReviewText = "A classic novel about the American dream.",
-                    Rating = 4,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 1), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 3,
-                    Title = "Interstellar",
-                    Category = "Movies",
-                    ReviewText = "A visually stunning space exploration journey.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 2), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 4,
-                    Title = "The Alchemist",
-                    Category = "Books",
-                    ReviewText = "A magical fable about following your dreams.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 3), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 5,
-                    Title = "Bohemian Rhapsody",
-                    Category = "Music",
-                    ReviewText = "A legendary song by Queen.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 4), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 6,
-                    Title = "The Godfather",
-                    Category = "Movies",
-                    ReviewText = "An epic tale of a mafia family.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 5), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 7,
-                    Title = "To Kill a Mockingbird",
-                    Category = "Books",
-                    ReviewText = "A novel about racial injustice in the American South.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 6), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 8,
-                    Title = "God of War",
-                    Category = "Games",
-                    ReviewText = "An epic adventure game with stunning combat.",
-                    Rating = 4,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 7), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 9,
-                    Title = "Red Dead Redemption 2",
-                    Category = "Games",
-                    ReviewText = "An open-world Western adventure.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 8), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 10,
-                    Title = "The Beatles - Abbey Road",
-                    Category = "Music",
-                    ReviewText = "A legendary album by The Beatles.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 9), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 11,
-                    Title = "The Matrix",
-                    Category = "Movies",
-                    ReviewText = "A sci-fi movie about reality and human existence.",
-                    Rating = 5,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 10), DateTimeKind.Utc)
-                },
-                new Review
-                {
-                    ReviewID = 12,
-                    Title = "1984",
-                    Category = "Books",
-                    ReviewText = "A dystopian novel about surveillance and totalitarianism.",
-                    Rating = 4,
-                    DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 11), DateTimeKind.Utc)
-                }
+               new Review
+               {
+                   ReviewID = 1,
+                   Title = "Inception",
+                   Category = "Movies",
+                   ReviewText = "A visually stunning, complex thriller with layered storytelling.",
+                   Rating = 5,
+                   DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 9, 30), DateTimeKind.Utc)
+               },
+            new Review
+            {
+                ReviewID = 2,
+                Title = "Avengers: Endgame",
+                Category = "Movies",
+                ReviewText = "An epic, emotional conclusion to the Avengers saga with intense action.",
+                Rating = 5,
+                DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 1), DateTimeKind.Utc)
+            },
+            new Review
+            {
+                ReviewID = 3,
+                Title = "God of War",
+                Category = "Games",
+                ReviewText = "An intense adventure with powerful storytelling and a compelling father-son dynamic.",
+                Rating = 5,
+                DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 2), DateTimeKind.Utc)
+            },
+            new Review
+            {
+                ReviewID = 4,
+                Title = "Grand Theft Auto V (GTA 5)",
+                Category = "Games",
+                ReviewText = "An immersive open-world game with thrilling missions and endless freedom.",
+                Rating = 5,
+                DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 3), DateTimeKind.Utc)
+            },
+            new Review
+            {
+                ReviewID = 5,
+                Title = "Believer",
+                Category = "Music",
+                ReviewText = "A high-energy song with empowering lyrics that resonate deeply.",
+                Rating = 4,
+                DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 4), DateTimeKind.Utc)
+            },
+            new Review
+            {
+                ReviewID = 6,
+                Title = "Perfect",
+                Category = "Music",
+                ReviewText = "A beautiful, heartfelt romantic ballad by Ed Sheeran.",
+                Rating = 5,
+                DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 5), DateTimeKind.Utc)
+            },
+            new Review
+            {
+                ReviewID = 7,
+                Title = "Atomic Habits",
+                Category = "Books",
+                ReviewText = "A practical guide with actionable advice for building good habits.",
+                Rating = 5,
+                DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 6), DateTimeKind.Utc)
+            },
+            new Review
+            {
+                ReviewID = 8,
+                Title = "Rich Dad Poor Dad",
+                Category = "Books",
+                ReviewText = "An insightful book on financial literacy and mindset transformation.",
+                Rating = 4,
+                DateReviewed = DateTime.SpecifyKind(new DateTime(2024, 10, 7), DateTimeKind.Utc)
+            }
+
             );
         }
 
