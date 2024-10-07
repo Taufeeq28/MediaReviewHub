@@ -118,8 +118,17 @@ The project utilizes the following technologies:
 ### Steps to Run Locally:
 
 1. **Clone the Repository**:
+   
+   -Open Visual Studio Code.
+   -Click on Clone Repository.
+   -Paste the Git repository URL: https://github.com/Taufeeq28/MediaReviewHub.git
+   -Select a location on your desktop where you want to clone the repository.
+   -Click Select Repository Location to start cloning.
+
+   Or
+   
     ```
-    git clone https://github.com/YourUsername/MediaReviewHub.git
+    git clone https://github.com/Taufeeq28/MediaReviewHub.git
     cd MediaReviewHub
     ```
 
@@ -128,22 +137,24 @@ The project utilizes the following technologies:
     - Update the connection string in the `appsettings.json` file located in the `MediaReviewHubWeb` project.
       ```json
       "ConnectionStrings": {
-        "DefaultConnection": "Host=localhost;Database=MediaReviewHub;Username=your_username;Password=your_password"
+        "DefaultConnection": "Host=localhost; Port=5432; Database=MediaReviewDB; TrustServerCertificate=True; Username=postgres; Password=postgres; ",
       }
       ```
       then select the solution file i.e MediaReviewHub.sln and run build
 
-3. **Apply Migrations**:
+4. **Apply Migrations**:
     Run the following commands to apply database migrations:
-    Go to package manager console and select MediaReviewHub.DataAccess as Default project 
+   
+    Go to package manager console and select MediaReviewHub.DataAccess as Default project
+   
     ```Package manager console
     add-migration addReviewToDb
     update-database
     ```
 
-5. **Run the Application**:
+6. **Run the Application**:
     
-6. **Database Seed**:
+7. **Database Seed**:
     The application seeds some initial review data using migrations.
 
 ---
@@ -186,6 +197,7 @@ MediaReviewHub.Models: Contains the models used in the application (e.g., Review
 - **Basic HTML/CSS**: The UI focuses on simplicity and clarity, as the primary goal is to demonstrate back-end and data-handling capabilities.
 - **Data Seeding**: Initial reviews are seeded to the database through migrations for demonstration purposes.
 - **DataTables for Filtering and Sorting**: We have implemented **DataTables** in the front-end to dynamically filter reviews based on selected categories using checkboxes. The filtered data updates in real-time, improving the user experience.
+- ** Autocomplete Feature**: When entering a title, the input field fetches and suggests results from both the TVMaze API for movies and the Open Library API for books. The suggestions are displayed in a dropdown with the title and category (e.g., "Movie" or "Book").
 
 ---
 
