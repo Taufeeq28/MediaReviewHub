@@ -60,7 +60,7 @@ MediaReviewHub/
 - **ApplicationDbContext.cs**: Handles the connection to the PostgreSQL database and defines the `DbSet<Review>` to interact with the `Reviews` table.
 - **Review.cs**: The model representing a review entity with properties such as `Title`, `Category`, `ReviewText`, `Rating`, and `DateReviewed`.
 - **Repository Pattern**: Follows a clean separation of concerns with interfaces and implementations for the review repository and unit of work.
-- **Razor Pages**: Contains Razor Pages (Views) for CRUD operations on reviews. Pages like `CreateReview.cshtml`, `Edit.cshtml`, and `Index.cshtml` provide user interaction.
+- **Razor Pages**: Contains Razor Pages (Views) for CRUD operations on reviews. Pages like `CreateReview.cshtml`, `Edit.cshtml`, `Delete.cshtml` and `Index.cshtml` provide user interaction.
 - **wwwroot**: Contains static assets like CSS files and images used in the application.
 
 ---
@@ -91,10 +91,11 @@ The project utilizes the following technologies:
    - Form to create a new review with fields for title, category, review text, rating, and date.
    - Autocomplete Feature: When entering a title, the input field fetches and suggests results from both the TVMaze API for movies and the Open Library API for books. The suggestions are displayed in a dropdown with the title and category (e.g., "Movie" or "Book").
 
-   Implementation details:
+   Implementation details of Autocomplete feature:
    
    When a user types more than 2 characters in the title field, a request is sent to both the TVMaze API and Open Library API.
-   The results are combined and displayed in a dropdown list, showing both the title and category.
+   The results are combined and displayed in a dropdown list, showing both the title and category. The results in the dropdown consist of a list of movies 
+   that are fetched from the TVMaze API followed by a list of books that are fetched from the Open Library API.
    Selecting a suggestion from the dropdown will automatically fill the title input field.
    
 4. **Edit Review**:
@@ -152,7 +153,7 @@ The project utilizes the following technologies:
     update-database
     ```
 
-6. **Run the Application**:
+6. **Run the Application**
     
 7. **Database Seed**:
     The application seeds some initial review data using migrations.
@@ -164,7 +165,7 @@ The project utilizes the following technologies:
 **Reviews Table**:
 - `ReviewID` (Primary Key) - Auto-increment integer.
 - `Title` (string) - Title of the media being reviewed.
-- `Category` (string) - Category of media (e.g., Movie, Book, Game).
+- `Category` (string) - Category of media (e.g., Movie, Book, Game, Music).
 - `ReviewText` (text) - Detailed review of the media.
 - `Rating` (integer) - A rating out of 5.
 - `DateReviewed` (date) - The date the media was reviewed.
@@ -187,7 +188,7 @@ The project relies on several NuGet packages to handle core functionalities like
 
 The MediaReviewHubWeb project references two internal projects:
 MediaReviewHub.DataAccess: Handles all database interactions and repository management.
-MediaReviewHub.Models: Contains the models used in the application (e.g., Review).
+MediaReviewHub.Models: Contains the models used in the application i.e., Review.
 
 
 ## Assumptions and Design Decisions
@@ -197,7 +198,7 @@ MediaReviewHub.Models: Contains the models used in the application (e.g., Review
 - **Basic HTML/CSS**: The UI focuses on simplicity and clarity, as the primary goal is to demonstrate back-end and data-handling capabilities.
 - **Data Seeding**: Initial reviews are seeded to the database through migrations for demonstration purposes.
 - **DataTables for Filtering and Sorting**: We have implemented **DataTables** in the front-end to dynamically filter reviews based on selected categories using checkboxes. The filtered data updates in real-time, improving the user experience.
-- ** Autocomplete Feature**: When entering a title, the input field fetches and suggests results from both the TVMaze API for movies and the Open Library API for books. The suggestions are displayed in a dropdown with the title and category (e.g., "Movie" or "Book").
+- **Autocomplete Feature**: When entering a title, the input field fetches and suggests results from both the TVMaze API for movies and the Open Library API for books. The suggestions are displayed in a dropdown with the title and category (e.g., "Movie" or "Book").
 
 ---
 
