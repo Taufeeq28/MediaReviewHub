@@ -182,7 +182,7 @@ The project relies on several NuGet packages to handle core functionalities like
 2. **Microsoft.EntityFrameworkCore.Tools (Version 8.0.8)**
    - This package provides design-time tools for Entity Framework Core. It allows the developer to create and apply migrations, scaffold databases, and perform other operations that facilitate development.
 
-3. **Npgsql.EntityFrameworkCore.PostgreSQL (Version 8.0.8)
+3. **Npgsql.EntityFrameworkCore.PostgreSQL (Version 8.0.8)**
   - Adds support for PostgreSQL databases in Entity Framework Core, enabling the project to interact with PostgreSQL databases using Entity Framework Core's fluent API and LINQ.
 
 
