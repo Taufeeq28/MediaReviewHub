@@ -4,13 +4,14 @@
         "scrollY": "900px",
         "scrollCollapse": true,
         "paging": true,
+       
     });
 
     // Function to fetch movies from TVMaze
     function fetchMovies(query) {
         return fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
             .then(response => response.json())
-            .then(data => data.map(movie => ({ name: movie.show.name, category: 'Movies' }))) // Changed to 'Movies'
+            .then(data => data.map(movie => ({ name: movie.show.name, category: 'Movies' })))
             .catch(error => console.error('Error fetching movie data:', error));
     }
 
@@ -18,7 +19,7 @@
     function fetchBooks(query) {
         return fetch(`https://openlibrary.org/search.json?title=${query}`)
             .then(response => response.json())
-            .then(data => data.docs.slice(0, 6).map(book => ({ name: book.title, category: 'Books' }))) // Changed to 'Books'
+            .then(data => data.docs.slice(0, 6).map(book => ({ name: book.title, category: 'Books' })))
             .catch(error => console.error('Error fetching book data:', error));
     }
 
@@ -64,7 +65,7 @@
         $('#titleInput').val(selectedTitle);
 
         // Automatically select the category based on the selected suggestion
-        $('#categorySelect').val(selectedCategory); // This will now work since categories match
+        $('#categorySelect').val(selectedCategory);
 
         // Hide the suggestions list
         $('#movieSuggestions').empty().hide();
@@ -74,6 +75,22 @@
     $(document).on('click', function (event) {
         if (!$(event.target).closest('#titleInput, #movieSuggestions').length) {
             $('#movieSuggestions').hide();
+        }
+    });
+
+    // Function to filter table based on selected categories
+    $('input[name="categoryFilter"]').on('change', function () {
+        // Get selected categories
+        var selectedCategories = [];
+        $('input[name="categoryFilter"]:checked').each(function () {
+            selectedCategories.push(this.value);
+        });
+
+        // Use DataTable's search function to filter rows
+        if (selectedCategories.length > 0) {
+            table.column(1).search(selectedCategories.join('|'), true, false).draw(); // column index 1 is for Category
+        } else {
+            table.column(1).search('').draw(); // Clear the filter if no category is selected
         }
     });
 });

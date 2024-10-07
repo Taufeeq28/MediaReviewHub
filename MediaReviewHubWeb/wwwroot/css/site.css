@@ -20,10 +20,4 @@ html {
 body {
   margin-bottom: 60px;
 }
-table thead tr th {
-    background: #1861ac;
-    color: white;
-    font-size: 16px;
-    position: sticky;
-    top: -1%;
-}  
+

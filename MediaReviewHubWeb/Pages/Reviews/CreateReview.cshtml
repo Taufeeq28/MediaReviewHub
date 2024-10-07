@@ -10,7 +10,7 @@
         <!-- Title -->
         <div class="form-group mb-3" style="position: relative;">
             <label style="font-weight: bold;">Title:</label>
-            <input id="titleInput" type="text" class="form-control"
+            <input asp-for="@Model.Review.Title" id="titleInput" type="text" class="form-control"
                    style="width: 100%; padding: 10px; font-size: 16px; box-sizing: border-box;"
                    placeholder="Start typing to see movie, book, games or music suggestions..." autocomplete="off" />
             <ul id="movieSuggestions" class="suggestions-list"
