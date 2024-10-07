@@ -120,11 +120,8 @@ The project utilizes the following technologies:
 
 1. **Clone the Repository**:
    
-   -Open Visual Studio Code.
-   -Click on Clone Repository.
-   -Paste the Git repository URL: https://github.com/Taufeeq28/MediaReviewHub.git
-   -Select a location on your desktop where you want to clone the repository.
-   -Click Select Repository Location to start cloning.
+   Open Visual Studio Code and click on Clone Repository. Paste the Git repository URL: https://github.com/Taufeeq28/MediaReviewHub.git. Select a location on your desktop where you want to clone the repository. 
+   Click Select Repository Location to start cloning.
 
    Or
    
@@ -133,7 +130,7 @@ The project utilizes the following technologies:
     cd MediaReviewHub
     ```
 
-2. **Database Setup**:
+3. **Database Setup**:
     - Ensure PostgreSQL is installed and running locally.
     - Update the connection string in the `appsettings.json` file located in the `MediaReviewHubWeb` project.
       ```json
